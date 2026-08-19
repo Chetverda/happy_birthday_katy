@@ -113,6 +113,23 @@
     ]
   };
 
+  const PETALS = {
+    quiz: [
+      'fresh-47.png',
+      'fresh-45.png',
+      'fresh-44.png',
+      'fresh-47.png',
+      'fresh-45.png'
+    ],
+    chapters: [
+      'fresh-47.png',
+      'fresh-45.png',
+      'fresh-44.png',
+      'fresh-47.png',
+      'fresh-44.png'
+    ]
+  };
+
   function buildSlider(el) {
     const key = el.dataset.flowerSlider;
     const files = SLIDER[key] || SLIDER.quiz;
@@ -161,6 +178,120 @@
 
   window.initFlowerSliderDrag = enableDragScroll;
 
+  function buildPetals() {
+    const files = PETALS[page] || PETALS.quiz;
+    if (!files.length) return;
+
+    const field = document.createElement('div');
+    field.className = 'petal-field';
+    field.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(field);
+
+    const petals = files.map((file, i) => {
+      const el = document.createElement('img');
+      el.className = 'petal';
+      el.src = src(file);
+      el.alt = '';
+      el.draggable = false;
+      const data = {
+        el,
+        x: 24 + i * 48,
+        y: 80 + i * 56,
+        vx: (i % 2 ? -1 : 1) * (0.09 + i * 0.01),
+        vy: (i % 3 ? 1 : -1) * (0.07 + i * 0.01),
+        angle: i * 17,
+        spin: (i % 2 ? -1 : 1) * (0.05 + i * 0.008),
+        scale: 0.6 + (i % 3) * 0.12,
+        dragging: false,
+        dx: 0,
+        dy: 0,
+        lane: i
+      };
+      el.style.setProperty('--petal-size', `${54 + (i % 3) * 10}px`);
+      field.appendChild(el);
+      return data;
+    });
+
+    function laneBounds(p) {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      const leftLane = { xMin: 6, xMax: Math.min(110, w * 0.18), yMin: 44, yMax: Math.max(120, h * 0.42) };
+      const rightLane = { xMin: Math.max(w - 118, w * 0.8), xMax: w - 12, yMin: 52, yMax: Math.max(140, h * 0.46) };
+      const bottomLeftLane = { xMin: 10, xMax: Math.min(132, w * 0.2), yMin: Math.max(h * 0.58, 220), yMax: h - 20 };
+      const bottomRightLane = { xMin: Math.max(w - 144, w * 0.78), xMax: w - 14, yMin: Math.max(h * 0.62, 240), yMax: h - 18 };
+      const topLane = { xMin: Math.max(72, w * 0.28), xMax: Math.min(w - 72, w * 0.72), yMin: 4, yMax: Math.min(92, h * 0.14) };
+      return [leftLane, rightLane, bottomLeftLane, bottomRightLane, topLane][p.lane % 5];
+    }
+
+    function clampToViewport(p) {
+      const box = laneBounds(p);
+      p.x = Math.max(box.xMin, Math.min(box.xMax, p.x));
+      p.y = Math.max(box.yMin, Math.min(box.yMax, p.y));
+    }
+
+    function seedLayout() {
+      petals.forEach((p, i) => {
+        const box = laneBounds(p);
+        p.x = box.xMin + ((box.xMax - box.xMin) * (0.35 + (i % 2) * 0.22));
+        p.y = box.yMin + ((box.yMax - box.yMin) * (0.3 + (i % 3) * 0.16));
+        clampToViewport(p);
+      });
+    }
+
+    let active = null;
+
+    petals.forEach(p => {
+      p.el.addEventListener('pointerdown', e => {
+        active = p;
+        p.dragging = true;
+        p.dx = e.clientX - p.x;
+        p.dy = e.clientY - p.y;
+        p.el.classList.add('is-dragging');
+        p.el.setPointerCapture(e.pointerId);
+      });
+
+      p.el.addEventListener('pointermove', e => {
+        if (active !== p || !p.dragging) return;
+        p.x = e.clientX - p.dx;
+        p.y = e.clientY - p.dy;
+        clampToViewport(p);
+      });
+
+      const end = () => {
+        if (!p.dragging) return;
+        p.dragging = false;
+        p.el.classList.remove('is-dragging');
+        active = null;
+      };
+
+      p.el.addEventListener('pointerup', end);
+      p.el.addEventListener('pointercancel', end);
+    });
+
+    function render() {
+      petals.forEach((p, i) => {
+        if (!p.dragging) {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.angle += p.spin;
+
+          const box = laneBounds(p);
+          if (p.x <= box.xMin || p.x >= box.xMax) p.vx *= -1;
+          if (p.y <= box.yMin || p.y >= box.yMax) p.vy *= -1;
+          p.y += Math.sin((Date.now() / 900) + i) * 0.18;
+        }
+
+        p.el.style.transform = `translate(${p.x}px, ${p.y}px) rotate(${p.angle}deg) scale(${p.scale})`;
+      });
+
+      requestAnimationFrame(render);
+    }
+
+    seedLayout();
+    window.addEventListener('resize', () => petals.forEach(clampToViewport), { passive: true });
+    render();
+  }
+
   const page = document.body.getAttribute('data-page') || 'quiz';
   const map = page === 'chapters' ? CHAPTERS : QUIZ;
 
@@ -170,6 +301,7 @@
   });
 
   document.querySelectorAll('[data-flower-slider]').forEach(buildSlider);
+  buildPetals();
 
   const pre = document.getElementById('preloader');
   if (pre && PRELOAD[page]) pre.insertAdjacentHTML('afterbegin', layer(PRELOAD[page]));

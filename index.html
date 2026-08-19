@@ -273,7 +273,7 @@
       e.preventDefault();
     }, { passive: false });
     document.addEventListener('touchmove', e => {
-      if (e.target.closest('input, .screen__inner, .memory-map, .memory-canvas, .flower-slider')) return;
+      if (e.target.closest('input, .screen__inner, .memory-map, .memory-canvas, .flower-slider, .petal, .petal-field')) return;
       e.preventDefault();
     }, { passive: false });
   </script>
