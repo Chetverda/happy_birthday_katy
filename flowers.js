@@ -15,101 +15,85 @@
 
   const SLIDER = {
     quiz: [
-      'fresh-1.png',
-      'fresh-20.png',
-      'fresh-10.png',
-      'dried-16.png',
-      'fresh-24.png',
-      'fresh-30.png',
-      'dried-11.png'
+      'dried-20.png',
+      'fresh-11.png',
+      'fresh-12.png',
+      'fresh-13.png',
+      'fresh-14.png',
+      'fresh-15.png'
     ],
     chapters: [
-      'fresh-2.png',
-      'fresh-22.png',
-      'fresh-9.png',
-      'fresh-33.png',
-      'dried-2.png',
+      'fresh-16.png',
       'fresh-18.png',
-      'fresh-16.png'
+      'fresh-2.png',
+      'fresh-20.png',
+      'fresh-21.png',
+      'fresh-22.png'
     ]
   };
 
   const QUIZ = {
     0: [
-      { file: 'fresh-1.png', pos: 'tr' },
-      { file: 'fresh-20.png', pos: 'bl', size: 'lg' },
-      { file: 'dried-16.png', pos: 'l' }
+      { file: 'dried-20.png', pos: 'l' },
+      { file: 'fresh-11.png', pos: 'r' }
     ],
     1: [
-      { file: 'fresh-10.png', pos: 'tl' },
-      { file: 'fresh-15.png', pos: 'br' },
-      { file: 'dried-1.png', pos: 'r' }
+      { file: 'fresh-12.png', pos: 'l' },
+      { file: 'fresh-13.png', pos: 'r' }
     ],
     2: [
-      { file: 'fresh-5.png', pos: 'tr' },
-      { file: 'fresh-24.png', pos: 'bl' }
+      { file: 'fresh-14.png', pos: 'l' },
+      { file: 'fresh-15.png', pos: 'r' }
     ],
     3: [
-      { file: 'fresh-12.png', pos: 'tl' },
-      { file: 'fresh-30.png', pos: 'br' },
-      { file: 'fresh-54.png', pos: 'r', size: 'sm' }
+      { file: 'fresh-16.png', pos: 'l' },
+      { file: 'fresh-18.png', pos: 'r' }
     ],
     4: [
-      { file: 'fresh-18.png', pos: 'tr', size: 'lg' },
-      { file: 'dried-11.png', pos: 'bl' },
-      { file: 'fresh-7.png', pos: 'l' }
+      { file: 'fresh-2.png', pos: 'l' },
+      { file: 'fresh-20.png', pos: 'r' }
     ]
   };
 
   const CHAPTERS = {
     0: [
-      { file: 'fresh-2.png', pos: 'tl' },
-      { file: 'fresh-22.png', pos: 'br' },
-      { file: 'dried-2.png', pos: 'r' }
+      { file: 'fresh-28.png', pos: 'l' },
+      { file: 'fresh-3.png', pos: 'r' }
     ],
     1: [
-      { file: 'fresh-4.png', pos: 'tr' },
-      { file: 'dried-5.png', pos: 'bl' },
-      { file: 'fresh-25.png', pos: 'l', size: 'sm' }
+      { file: 'fresh-4.png', pos: 'l' },
+      { file: 'fresh-44.png', pos: 'r' }
     ],
     2: [
-      { file: 'fresh-9.png', pos: 'tl' },
-      { file: 'fresh-33.png', pos: 'br' },
-      { file: 'dried-14.png', pos: 'r' }
+      { file: 'fresh-45.png', pos: 'l' },
+      { file: 'fresh-47.png', pos: 'r' }
     ],
     3: [
-      { file: 'fresh-14.png', pos: 'tl', size: 'sm' },
-      { file: 'dried-20.png', pos: 'tr', size: 'sm' },
-      { file: 'fresh-47.png', pos: 'bl', size: 'sm' },
-      { file: 'fresh-28.png', pos: 'br', size: 'sm' }
+      { file: 'fresh-7.png', pos: 'l' },
+      { file: 'fresh-9.png', pos: 'r' }
     ],
     4: [
-      { file: 'fresh-6.png', pos: 'tr' },
-      { file: 'fresh-11.png', pos: 'bl' },
-      { file: 'dried-13.png', pos: 'l' }
+      { file: 'dried-20.png', pos: 'l' },
+      { file: 'fresh-11.png', pos: 'r' }
     ],
     5: [
-      { file: 'fresh-13.png', pos: 'tl' },
-      { file: 'fresh-21.png', pos: 'br' },
-      { file: 'dried-9.png', pos: 'r', size: 'sm' }
+      { file: 'fresh-12.png', pos: 'l' },
+      { file: 'fresh-13.png', pos: 'r' }
     ],
     6: [
-      { file: 'fresh-16.png', pos: 'tr', size: 'lg' },
-      { file: 'fresh-8.png', pos: 'bl' },
-      { file: 'dried-4.png', pos: 'l' }
+      { file: 'fresh-14.png', pos: 'l' },
+      { file: 'fresh-15.png', pos: 'r' }
     ]
   };
 
   const PRELOAD = {
     quiz: [
-      { file: 'fresh-1.png', pos: 'tr' },
-      { file: 'dried-16.png', pos: 'bl' },
-      { file: 'fresh-54.png', pos: 'tl', size: 'sm' }
+      { file: 'fresh-21.png', pos: 'l' },
+      { file: 'fresh-22.png', pos: 'r' }
     ],
     chapters: [
-      { file: 'fresh-2.png', pos: 'tl' },
-      { file: 'fresh-18.png', pos: 'br' },
-      { file: 'dried-11.png', pos: 'r', size: 'sm' }
+      { file: 'fresh-16.png', pos: 'l' },
+      { file: 'fresh-18.png', pos: 'r' }
     ]
   };
 
