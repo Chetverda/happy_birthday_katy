@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Открытка для Кати — печать</title>
+  <style>
+    @font-face {
+      font-family: RostelecomBasis;
+      src: url('fonts/RostelecomBasis-Regular.ttf') format('truetype');
+      font-weight: 400;
+    }
+    @font-face {
+      font-family: RostelecomBasis;
+      src: url('fonts/RostelecomBasis-Bold.ttf') format('truetype');
+      font-weight: 700;
+    }
+
+    :root { --ink: #1a0f35; --paper: #e4e2dd; }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      min-height: 100%;
+      background: #cfc8c0;
+      font-family: RostelecomBasis, Arial, sans-serif;
+      color: var(--ink);
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      padding: 16px;
+    }
+
+    .toolbar button {
+      appearance: none;
+      border: 0;
+      background: var(--ink);
+      color: #fff;
+      font: inherit;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 12px 22px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+
+    .sheet {
+      width: 148mm;
+      height: 210mm;
+      margin: 0 auto 32px;
+      position: relative;
+      overflow: hidden;
+      background-color: var(--paper);
+      background-image: url("img/background.jpg");
+      background-size: cover;
+      background-position: center;
+      color: var(--ink);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .flowers { position: absolute; inset: 0; pointer-events: none; }
+
+    .flower {
+      position: absolute;
+      mix-blend-mode: screen;
+      opacity: 0.92;
+    }
+
+    .flower--tl { top: -8mm; left: -12mm; width: 58mm; }
+    .flower--tr { top: -6mm; right: -14mm; width: 52mm; }
+    .flower--bl { bottom: -10mm; left: -16mm; width: 64mm; }
+    .flower--br { bottom: -12mm; right: -12mm; width: 58mm; }
+    .flower--l  { top: 38%; left: -18mm; width: 42mm; }
+    .flower--r  { top: 42%; right: -16mm; width: 38mm; }
+
+    .card {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 22mm 16mm;
+    }
+
+    .eyebrow {
+      font-size: 9pt;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      opacity: 0.55;
+      margin-bottom: 8mm;
+    }
+
+    h1 {
+      font-size: 22pt;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 0.95;
+      text-transform: uppercase;
+      margin-bottom: 4mm;
+    }
+
+    .lead {
+      font-size: 10pt;
+      line-height: 1.4;
+      max-width: 90mm;
+      opacity: 0.72;
+      margin-bottom: 10mm;
+    }
+
+    .qr-wrap {
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(255,255,255,0.9);
+      padding: 5mm;
+      border-radius: 4mm;
+      box-shadow: 0 8px 24px rgba(26,15,53,0.08);
+    }
+
+    #qr svg {
+      display: block;
+      width: 48mm;
+      height: 48mm;
+    }
+
+    .hint {
+      margin-top: 8mm;
+      font-size: 9pt;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.6;
+      max-width: 88mm;
+      line-height: 1.45;
+    }
+
+    .url {
+      margin-top: 5mm;
+      font-size: 7.5pt;
+      letter-spacing: 0.02em;
+      word-break: break-all;
+      opacity: 0.4;
+      max-width: 90mm;
+    }
+
+    @page { size: A5 portrait; margin: 0; }
+
+    @media print {
+      .toolbar { display: none; }
+      html, body { background: #fff; }
+      .sheet {
+        margin: 0;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <button type="button" onclick="window.print()">Печать</button>
+  </div>
+
+  <article class="sheet">
+    <div class="flowers" aria-hidden="true">
+      <img class="flower flower--tl" src="flowers/fresh-1.png" alt="">
+      <img class="flower flower--tr" src="flowers/fresh-18.png" alt="">
+      <img class="flower flower--bl" src="flowers/dried-16.png" alt="">
+      <img class="flower flower--br" src="flowers/fresh-20.png" alt="">
+      <img class="flower flower--l" src="flowers/dried-2.png" alt="">
+      <img class="flower flower--r" src="flowers/fresh-10.png" alt="">
+    </div>
+
+    <div class="card">
+      <div class="eyebrow">Для Кати</div>
+      <h1>С днём<br>рождения</h1>
+      <p class="lead">Букет уже у тебя. Дальше — три вопроса и несколько глав о тебе.</p>
+      <div class="qr-wrap">
+        <div id="qr"></div>
+      </div>
+      <p class="hint">Наведи камеру на код —<br>откроется твой день</p>
+      <p class="url">chetverda.github.io/happy_birthday_katy</p>
+    </div>
+  </article>
+
+  <script src="qrcode.min.js"></script>
+  <script>
+    const url = 'https://chetverda.github.io/happy_birthday_katy/';
+    const qr = qrcode(0, 'M');
+    qr.addData(url);
+    qr.make();
+    document.getElementById('qr').innerHTML = qr.createSvgTag({
+      cellSize: 8,
+      margin: 1,
+      scalable: true
+    });
+    document.querySelectorAll('#qr svg [fill="#000000"], #qr svg [fill="#000"]').forEach(el => {
+      el.setAttribute('fill', '#1a0f35');
+    });
+  </script>
+</body>
+</html>

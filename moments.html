@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#e4e2dd">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
+  <title>Главы твоего времени — Катя</title>
+  <link rel="stylesheet" href="dc-theme.css">
+</head>
+<body data-page="chapters">
+
+  <div class="preloader" id="preloader">
+    <div class="preloader__inner">
+      <div class="hourglass-stage hourglass-stage--solo">
+        <div class="hourglass" aria-hidden="true"></div>
+      </div>
+      <div class="preloader__text">
+        <div class="preloader__text-el" style="transform:translateY(0);opacity:1">Было</div>
+        <div class="preloader__text-el" style="transform:translateY(105%);opacity:0">Сейчас</div>
+        <div class="preloader__text-el" style="transform:translateY(210%);opacity:0">Будет</div>
+      </div>
+      <div class="preloader__counter"><span id="preload-num">0</span>%</div>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="header-logo-text">Катя, с днём рождения!</div>
+  </header>
+
+  <main class="app-screens">
+
+    <section class="screen is-active is-static" data-screen="0">
+      <div class="screen__inner">
+        <div class="text-xs screen-label">Для Кати · День рождения</div>
+        <h1 class="hero-title">Главы<br>твоего времени</h1>
+        <p class="hero-sub">Не KPI. Не дедлайны. А те моменты, из которых складывается жизнь — та самая, которую невозможно делегировать.</p>
+        <div class="actions-row">
+          <button class="hero-tricks__cta" type="button" onclick="goTo(1)">Читать</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen screen--sage" data-screen="1">
+      <div class="screen__inner">
+        <div class="text-xs screen-label">Глава первая · Было</div>
+        <h2 class="h4">Когда всё<br>только начиналось</h2>
+        <p class="letter-text">Были дни, когда ты ещё не знала, кем станешь — но уже умела замечать главное среди шума. Училась, ошибалась, собирала себя по кусочкам.</p>
+        <p class="letter-text letter-extra">Те ранние главы — не черновик. Они — фундамент. Всё, что ты умеешь сегодня, началось там — в моментах, когда не следишь за временем.</p>
+        <div class="actions-row">
+          <button class="btn" type="button" onclick="goTo(2)">Дальше</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen screen--mist" data-screen="2">
+      <div class="screen__inner">
+        <div class="text-xs screen-label">Глава вторая · Сейчас</div>
+        <h2 class="h4">Этот день —<br>запомни его таким</h2>
+        <p class="letter-text">Сегодня ты на очной программе. Вокруг тебя — идеи, люди, задачи. Но кто-то остановил время, чтобы сказать: <em>ты — самое важное</em>.</p>
+        <p class="letter-text letter-extra">Букет. Карточка. Три вопроса. День рождения — не ещё один обычный день, а пауза, в которой видно: как прекрасен этот миг, ты, и твой жизненный путь.</p>
+        <div class="actions-row">
+          <button class="btn" type="button" onclick="goTo(3)">Дальше</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen screen--sand screen--map" data-screen="3">
+      <div class="screen__inner">
+        <div class="map-head">
+          <div class="text-xs screen-label">Карта воспоминаний</div>
+          <h2 class="h5">Моменты, которые нельзя вернуть,<br>но можно вспомнить с теплотой на душе</h2>
+          <p class="text-s lead" style="margin-top:6px">Листай карту пальцем, перетаскивай карточки и нажми — чтобы вывести снимок вперёд.</p>
+        </div>
+        <div class="memory-map" id="memory-map"></div>
+        <div class="polaroid-nav">
+          <button class="btn btn-ghost" type="button" onclick="shiftMemory(-1)">←</button>
+          <span class="polaroid-count" id="polaroid-count"></span>
+          <button class="btn btn-ghost" type="button" onclick="shiftMemory(1)">→</button>
+          <button class="btn" type="button" onclick="goTo(4)">Дальше</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen screen--blush" data-screen="4">
+      <div class="screen__inner">
+        <div class="text-xs screen-label">Глава третья · Будет</div>
+        <h2 class="h4">Впереди —<br>твоё время</h2>
+        <p class="letter-text">Мы не знаем, какие главы ты напишешь дальше. Но знаем: ты заслуживаешь, чтобы стрелки отсчитывали не только дедлайны, но и кофе, прогулки, красивые путешествия, катание по склонам и смех без повода.</p>
+        <p class="letter-text letter-extra">Пусть в твоём ритме будет место и для решений, которые хочется запускать — и для тишины, когда можно просто быть.</p>
+        <div class="actions-row">
+          <button class="btn" type="button" onclick="goTo(5)">Сохранить этот миг</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen screen--cream" data-screen="5">
+      <div class="screen__inner">
+        <div class="text-xs screen-label">Из чего складывается твоё время</div>
+        <h2 class="h4">Чего хочется<br>больше</h2>
+        <p class="text-s lead">Нажми на то, чего бы тебе хотелось в этом году. Просто так — для себя. Можно выбрать несколько вариантов — не ограничивай себя!</p>
+        <div class="moments-grid">
+          <button class="moment-btn" type="button" onclick="saveMoment(this,'тишины')"><span class="moment-btn__emoji">🌙</span><span class="moment-btn__label">тишины</span></button>
+          <button class="moment-btn" type="button" onclick="saveMoment(this,'смеха')"><span class="moment-btn__emoji">😄</span><span class="moment-btn__label">смеха</span></button>
+          <button class="moment-btn" type="button" onclick="saveMoment(this,'красоты')"><span class="moment-btn__emoji">✨</span><span class="moment-btn__label">красоты</span></button>
+          <button class="moment-btn" type="button" onclick="saveMoment(this,'смелости')"><span class="moment-btn__emoji">🔥</span><span class="moment-btn__label">смелости</span></button>
+          <button class="moment-btn" type="button" onclick="saveMoment(this,'тепла')"><span class="moment-btn__emoji">🤍</span><span class="moment-btn__label">тепла</span></button>
+          <button class="moment-btn" type="button" onclick="saveMoment(this,'свободы')"><span class="moment-btn__emoji">🕊</span><span class="moment-btn__label">свободы</span></button>
+        </div>
+        <div class="saved-line" id="saved-line"></div>
+        <div class="actions-row">
+          <button class="btn" type="button" onclick="goTo(6)">К подарку</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen screen--sage" data-screen="6">
+      <div class="screen__inner">
+        <div class="text-xs screen-label">Твой подарок</div>
+        <h2 class="h4">Сертификат<br>в AllTime</h2>
+        <p class="letter-text">Самое ценное — не часы на запястье, а уважение к твоему времени. Право выбрать свой момент. Мы не дарим готовые часы — это слишком личный выбор. Мы дарим время выбрать тебе именно те часы, которые понравятся больше всего и будут каждый день радовать тебя.</p>
+        <div class="meta-row" style="margin-top:18px">
+          <div class="meta-label">Когда</div>
+          <div class="text-xl">Можно воспользоваться, когда будешь готова</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-label">Сертификат</div>
+          <a class="btn" href="https://www.alltime.ru/certificates/cert/?ID=773701&CERT_NUM=M8uOGUqwVJ1DRDo4GgwqwIMq" target="_blank" rel="noopener">Открыть подарок</a>
+        </div>
+        <p class="team-note">Поздравление от людей, которым очень повезло пересечься с тобой во времени.<br><strong style="opacity:1">Твой ДУЗ! С бесконечной любовью и самыми тёплыми пожеланиями! И с благодарностью, что ты даришь нам своё время ❤</strong></p>
+        <div class="actions-row">
+          <a class="hero-tricks__cta" href="index.html">К началу</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="memories.js"></script>
+  <script>
+    const HOURGLASS_SVG = `
+      <svg viewBox="0 0 64 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 8h40v8c0 12-8 20-16 26 8 6 16 14 16 26v8H12v-8c0-12 8-20 16-26C20 36 12 28 12 16V8Z" stroke="currentColor" stroke-width="3" fill="#fff"/>
+        <path class="sand-top" d="M20 16c0 10 6 16 12 20 6-4 12-10 12-20H20Z" fill="currentColor" opacity="0.35"/>
+        <path class="sand-bottom" d="M20 84c0-8 5-14 12-18 7 4 12 10 12 18H20Z" fill="currentColor" opacity="0.35"/>
+        <rect class="stream" x="31" y="36" width="2" height="28" rx="1" fill="currentColor" opacity="0.35"/>
+        <rect x="10" y="6" width="44" height="6" rx="2" fill="currentColor"/>
+        <rect x="10" y="88" width="44" height="6" rx="2" fill="currentColor"/>
+      </svg>`;
+
+    document.querySelectorAll('.hourglass').forEach(el => { el.innerHTML = HOURGLASS_SVG; });
+
+    let current = 0;
+    let activeMemory = 0;
+    const saved = new Set();
+
+    (function preload() {
+      const els = document.querySelectorAll('.preloader__text-el');
+      const num = document.getElementById('preload-num');
+      let p = 0, word = 0;
+      const tick = setInterval(() => {
+        p = Math.min(100, p + Math.floor(Math.random() * 6) + 2);
+        num.textContent = p;
+        if (p > 32 && word === 0) { shift(0, 1); word = 1; }
+        if (p > 66 && word === 1) { shift(1, 2); word = 2; }
+        if (p >= 100) {
+          clearInterval(tick);
+          setTimeout(() => document.getElementById('preloader').classList.add('is-hidden'), 500);
+        }
+      }, 90);
+      function shift(from, to) {
+        els[from].style.transform = 'translateY(-105%)';
+        els[from].style.opacity = '0';
+        els[to].style.transform = 'translateY(0)';
+        els[to].style.opacity = '1';
+      }
+    })();
+
+    function goTo(n, back) {
+      if (n === current) return;
+      const next = document.querySelector(`[data-screen="${n}"]`);
+      const prev = document.querySelector(`[data-screen="${current}"]`);
+      if (!next) return;
+      document.querySelectorAll('.screen.is-leaving, .screen.is-leaving-back').forEach(s => {
+        s.classList.remove('is-leaving', 'is-leaving-back');
+      });
+      if (prev) {
+        prev.classList.remove('is-active', 'is-static', 'is-active-back');
+        prev.classList.add(back ? 'is-leaving-back' : 'is-leaving');
+        prev.addEventListener('animationend', () => prev.classList.remove('is-leaving', 'is-leaving-back'), { once: true });
+      }
+      next.classList.remove('is-static', 'is-active', 'is-active-back');
+      next.classList.add(back ? 'is-active-back' : 'is-active');
+      current = n;
+    }
+
+    function goBack() {
+      if (current <= 0) {
+        window.location.href = 'index.html';
+        return;
+      }
+      goTo(current - 1, true);
+    }
+
+    function injectBackButtons() {
+      document.querySelectorAll('.screen[data-screen]').forEach(screen => {
+        const n = parseInt(screen.dataset.screen, 10);
+        const row = screen.querySelector('.actions-row, .polaroid-nav');
+        if (!row) return;
+        const candidates = Array.from(row.querySelectorAll('.btn, .hero-tricks__cta'));
+        const maxW = candidates.reduce((m, el) => Math.max(m, el.getBoundingClientRect().width), 0);
+        const capW = row.getBoundingClientRect().width || window.innerWidth;
+        const minW = maxW && capW ? Math.min(maxW, capW) : 0;
+        const useHero = !!row.querySelector('.hero-tricks__cta');
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = useHero ? 'hero-tricks__cta btn-back' : 'btn btn-ghost btn-back';
+        btn.textContent = 'Назад';
+        btn.onclick = goBack;
+        btn.style.marginLeft = 'auto';
+        if (minW) btn.style.minWidth = minW + 'px';
+        row.appendChild(btn);
+      });
+    }
+
+    let dragState = null;
+
+    function renderMemories() {
+      const map = document.getElementById('memory-map');
+      map.innerHTML = `<div class="memory-canvas" id="memory-canvas">${MEMORIES.map((m, i) => `
+        <button class="polaroid${i === activeMemory ? ' is-active' : ''}" type="button" data-index="${i}"
+          style="left:${m.left};top:${m.top};--rot:${m.rot};transform:rotate(${m.rot});animation-delay:${(i % 8) * 0.35}s">
+          <img class="polaroid__photo" src="${m.src}" alt="" draggable="false">
+          <span class="polaroid__cap">${m.year ? `<span class="polaroid__year">${m.year}</span>` : ''}${m.event}</span>
+        </button>
+      `).join('')}</div>`;
+
+      document.getElementById('polaroid-count').textContent =
+        (activeMemory + 1) + ' / ' + MEMORIES.length;
+      focusMemory(activeMemory);
+      enablePolaroidDrag();
+    }
+
+    function enablePolaroidDrag() {
+      const canvas = document.getElementById('memory-canvas');
+      if (!canvas || canvas.dataset.dragReady) return;
+      canvas.dataset.dragReady = '1';
+
+      canvas.addEventListener('pointerdown', e => {
+        const pol = e.target.closest('.polaroid');
+        if (!pol) return;
+        pol.setPointerCapture(e.pointerId);
+        dragState = {
+          el: pol,
+          startX: e.clientX,
+          startY: e.clientY,
+          origLeft: parseFloat(pol.style.left) || 0,
+          origTop: parseFloat(pol.style.top) || 0,
+          moved: false
+        };
+        pol.classList.add('is-dragging');
+      });
+
+      canvas.addEventListener('pointermove', e => {
+        if (!dragState) return;
+        const dx = e.clientX - dragState.startX;
+        const dy = e.clientY - dragState.startY;
+        if (!dragState.moved && (Math.abs(dx) > 6 || Math.abs(dy) > 6)) {
+          dragState.moved = true;
+        }
+        if (dragState.moved) {
+          e.preventDefault();
+          dragState.el.style.left = (dragState.origLeft + dx) + 'px';
+          dragState.el.style.top = (dragState.origTop + dy) + 'px';
+        }
+      });
+
+      const endDrag = e => {
+        if (!dragState) return;
+        const { el, moved } = dragState;
+        el.classList.remove('is-dragging');
+        if (!moved) {
+          focusMemory(parseInt(el.dataset.index, 10));
+        }
+        dragState = null;
+      };
+
+      canvas.addEventListener('pointerup', endDrag);
+      canvas.addEventListener('pointercancel', endDrag);
+    }
+
+    function focusMemory(i) {
+      activeMemory = i;
+      document.querySelectorAll('.polaroid').forEach((el, idx) => {
+        const on = idx === i;
+        el.classList.toggle('is-active', on);
+        el.style.zIndex = on ? '80' : String(idx + 1);
+      });
+      document.getElementById('polaroid-count').textContent =
+        (activeMemory + 1) + ' / ' + MEMORIES.length;
+    }
+
+    function shiftMemory(dir) {
+      focusMemory((activeMemory + dir + MEMORIES.length) % MEMORIES.length);
+    }
+
+    function saveMoment(btn, name) {
+      btn.classList.toggle('is-saved');
+      saved.has(name) ? saved.delete(name) : saved.add(name);
+      document.getElementById('saved-line').textContent = saved.size
+        ? 'Ты сохранила: ' + [...saved].join(', ') + '.'
+        : '';
+    }
+
+    renderMemories();
+    injectBackButtons();
+
+    document.addEventListener('wheel', e => {
+      if (e.target.closest('.screen__inner, .memory-map, .memory-canvas')) return;
+      e.preventDefault();
+    }, { passive: false });
+    document.addEventListener('touchmove', e => {
+      if (e.target.closest('input, .screen__inner, .memory-map, .memory-canvas, .flower-slider')) return;
+      e.preventDefault();
+    }, { passive: false });
+  </script>
+  <script src="flowers.js"></script>
+</body>
+</html>

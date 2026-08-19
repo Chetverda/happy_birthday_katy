@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#e4e2dd">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
+  <title>Катя — твоё время</title>
+  <link rel="stylesheet" href="dc-theme.css">
+</head>
+<body data-page="quiz">
+
+  <div class="preloader" id="preloader">
+    <div class="preloader__inner">
+      <div class="hourglass-stage hourglass-stage--solo">
+        <div class="hourglass" aria-hidden="true"></div>
+      </div>
+      <div class="preloader__text">
+        <div class="preloader__text-el" style="transform:translateY(0);opacity:1">Береги время</div>
+        <div class="preloader__text-el" style="transform:translateY(105%);opacity:0">Цени миг</div>
+        <div class="preloader__text-el" style="transform:translateY(210%);opacity:0">С днём рождения</div>
+      </div>
+      <div class="preloader__counter"><span id="preload-num">0</span>%</div>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="header-logo-text">Катя, с днём рождения!</div>
+  </header>
+
+  <main class="app-screens">
+
+    <section class="screen is-active is-static" data-screen="0">
+      <div class="screen__inner">
+        <div class="text-xs screen-label">01 · Начало</div>
+        <h1 class="hero-title">Время, которое<br>работает на тебя</h1>
+        <p class="hero-sub">Тебе вручили букет и карточку. Внутри — три вопроса. Ответь на них — и посмотри, что будет дальше.</p>
+        <div class="actions-row">
+          <button class="hero-tricks__cta" type="button" onclick="goTo(1)">Начать</button>
+        </div>
+        <p class="text-xs" style="margin-top:16px;opacity:0.4">P.S. Это не бизнес-задача, но у неё есть дедлайн. И он — сегодня.</p>
+      </div>
+    </section>
+
+    <section class="screen screen--sage" data-screen="1">
+      <div class="screen__inner">
+        <div class="text-xs screen-label">02 · Миг 1 из 3</div>
+        <h2 class="h4">О приоритетах<br>на сегодня</h2>
+        <p class="text-m lead">У тебя есть всего несколько минут перерыва и букет на коленях. Куда инвестировать это время?</p>
+        <div class="quiz-cards">
+          <button class="quiz-card" type="button" data-q1="mail" onclick="pickQ1(this,'mail')">
+            <div class="quiz-card__title">Ответить на три «срочных» письма</div>
+            <div class="quiz-card__desc">Они подождут. Но ты — нет.</div>
+          </button>
+          <button class="quiz-card" type="button" data-q1="plan" onclick="pickQ1(this,'plan')">
+            <div class="quiz-card__title">Спланировать следующий квартал</div>
+            <div class="quiz-card__desc">Построить roadmap можно и завтра.</div>
+          </button>
+          <button class="quiz-card" type="button" data-q1="pause" onclick="pickQ1(this,'pause')">
+            <div class="quiz-card__title">Остановиться: сегодня — твой день</div>
+            <div class="quiz-card__desc">Лучший тайм-менеджмент — пауза</div>
+          </button>
+          <button class="quiz-card" type="button" data-q1="slack" onclick="pickQ1(this,'slack')">
+            <div class="quiz-card__title">Проверить Ючат «на всякий случай»</div>
+            <div class="quiz-card__desc">Ючат переживёт.</div>
+          </button>
+        </div>
+        <div class="feedback" id="fb1"></div>
+        <div class="actions-row">
+          <button class="btn" id="btn1" disabled type="button" onclick="check1()">Проверить</button>
+          <button class="btn" id="btnNext1" disabled type="button" onclick="goTo(2)">Дальше</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen screen--mist" data-screen="2">
+      <div class="screen__inner">
+        <div class="text-xs screen-label">03 · Миг 2 из 3</div>
+        <h2 class="h4">Загадка</h2>
+        <p class="text-m lead">У него нет ни начала, ни конца для Вселенной, но оно заканчивается для каждого из нас. Его нельзя потрогать, остановить или вернуть, хотя мы измеряем им всю свою жизнь. Чем больше его ценишь, тем быстрее оно исчезает, а впереди — лишь то, чего еще не существует. Что это?</p>
+        <label class="text-xs" style="display:block;margin:20px 0 6px;opacity:0.45">Одно слово</label>
+        <input class="input-field" id="answer2" type="text" placeholder="..." autocomplete="off">
+        <p class="text-s" style="margin-top:10px;opacity:0.45">Подсказка: это не «дедлайн».</p>
+        <div class="feedback" id="fb2"></div>
+        <div class="actions-row">
+          <button class="btn" type="button" onclick="check2()">Проверить</button>
+          <button class="btn" id="btnNext2" disabled type="button" onclick="goTo(3)">Дальше</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen screen--sand" data-screen="3">
+      <div class="screen__inner">
+        <div class="text-xs screen-label">04 · Миг 3 из 3</div>
+        <h2 class="h4">Машина<br>времени</h2>
+        <p class="text-m lead">Один прыжок — куда летим?</p>
+        <div class="quiz-cards">
+          <button class="quiz-card" type="button" onclick="pickQ3(this)">
+            <div class="quiz-card__title">В момент, когда ты впервые поверила в себя</div>
+            <div class="quiz-card__desc">Обнять ту себя: «Ты справишься»</div>
+          </button>
+          <button class="quiz-card" type="button" onclick="pickQ3(this)">
+            <div class="quiz-card__title">В вечер, который ещё впереди</div>
+            <div class="quiz-card__desc">Туда, где будет что-то чудесное</div>
+          </button>
+          <button class="quiz-card" type="button" onclick="pickQ3(this)">
+            <div class="quiz-card__title">Сюда — в этот перерыв, с этим букетом</div>
+            <div class="quiz-card__desc">Лучшее время — прямо сейчас</div>
+          </button>
+        </div>
+        <div class="feedback" id="fb3"></div>
+        <div class="actions-row">
+          <button class="btn" id="btn3" disabled type="button" onclick="goTo(4)">Дальше</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen screen--blush" data-screen="4">
+      <div class="screen__inner">
+        <div class="text-xs screen-label">05 · Дальше</div>
+        <h2 class="h4">Теперь — несколько<br>глав о тебе</h2>
+        <p class="letter-text">Дальше — не KPI и не дедлайны, а история, которую нельзя делегировать.</p>
+        <div class="actions-row">
+          <a class="hero-tricks__cta" href="moments.html">Открыть главы</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    const HOURGLASS_SVG = `
+      <svg viewBox="0 0 64 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 8h40v8c0 12-8 20-16 26 8 6 16 14 16 26v8H12v-8c0-12 8-20 16-26C20 36 12 28 12 16V8Z" stroke="currentColor" stroke-width="3" fill="#fff"/>
+        <path class="sand-top" d="M20 16c0 10 6 16 12 20 6-4 12-10 12-20H20Z" fill="currentColor" opacity="0.35"/>
+        <path class="sand-bottom" d="M20 84c0-8 5-14 12-18 7 4 12 10 12 18H20Z" fill="currentColor" opacity="0.35"/>
+        <rect class="stream" x="31" y="36" width="2" height="28" rx="1" fill="currentColor" opacity="0.35"/>
+        <rect x="10" y="6" width="44" height="6" rx="2" fill="currentColor"/>
+        <rect x="10" y="88" width="44" height="6" rx="2" fill="currentColor"/>
+      </svg>`;
+
+    document.querySelectorAll('.hourglass').forEach(el => { el.innerHTML = HOURGLASS_SVG; });
+
+    let current = 0;
+    let q1 = '';
+
+    (function preload() {
+      const els = document.querySelectorAll('.preloader__text-el');
+      const num = document.getElementById('preload-num');
+      let p = 0, word = 0;
+      const tick = setInterval(() => {
+        p = Math.min(100, p + Math.floor(Math.random() * 6) + 2);
+        num.textContent = p;
+        if (p > 32 && word === 0) { shift(0, 1); word = 1; }
+        if (p > 66 && word === 1) { shift(1, 2); word = 2; }
+        if (p >= 100) {
+          clearInterval(tick);
+          setTimeout(() => document.getElementById('preloader').classList.add('is-hidden'), 500);
+        }
+      }, 90);
+      function shift(from, to) {
+        els[from].style.transform = 'translateY(-105%)';
+        els[from].style.opacity = '0';
+        els[to].style.transform = 'translateY(0)';
+        els[to].style.opacity = '1';
+      }
+    })();
+
+    function goTo(n, back) {
+      if (n === current) return;
+      const next = document.querySelector(`[data-screen="${n}"]`);
+      const prev = document.querySelector(`[data-screen="${current}"]`);
+      if (!next) return;
+      document.querySelectorAll('.screen.is-leaving, .screen.is-leaving-back').forEach(s => {
+        s.classList.remove('is-leaving', 'is-leaving-back');
+      });
+      if (prev) {
+        prev.classList.remove('is-active', 'is-static', 'is-active-back');
+        prev.classList.add(back ? 'is-leaving-back' : 'is-leaving');
+        prev.addEventListener('animationend', () => prev.classList.remove('is-leaving', 'is-leaving-back'), { once: true });
+      }
+      next.classList.remove('is-static', 'is-active', 'is-active-back');
+      next.classList.add(back ? 'is-active-back' : 'is-active');
+      current = n;
+    }
+
+    function goBack() {
+      if (current <= 0) return;
+      goTo(current - 1, true);
+    }
+
+    function injectBackButtons() {
+      document.querySelectorAll('.screen[data-screen]').forEach(screen => {
+        const n = parseInt(screen.dataset.screen, 10);
+        const row = screen.querySelector('.actions-row');
+        if (!row || n === 0) return;
+        const candidates = Array.from(row.querySelectorAll('.btn, .hero-tricks__cta'));
+        const maxW = candidates.reduce((m, el) => Math.max(m, el.getBoundingClientRect().width), 0);
+        const capW = row.getBoundingClientRect().width || window.innerWidth;
+        const minW = maxW && capW ? Math.min(maxW, capW) : 0;
+        const useHero = !!row.querySelector('.hero-tricks__cta');
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = useHero ? 'hero-tricks__cta btn-back' : 'btn btn-ghost btn-back';
+        btn.textContent = 'Назад';
+        btn.onclick = goBack;
+        btn.style.marginLeft = 'auto';
+        if (minW) btn.style.minWidth = minW + 'px';
+        row.appendChild(btn);
+      });
+    }
+
+    injectBackButtons();
+
+    function pickQ1(el, val) {
+      document.querySelectorAll('[data-q1]').forEach(c => c.classList.remove('is-selected'));
+      el.classList.add('is-selected');
+      q1 = val;
+      document.getElementById('btn1').disabled = false;
+      const next = document.getElementById('btnNext1');
+      if (next) next.disabled = true;
+    }
+
+    function check1() {
+      const fb = document.getElementById('fb1');
+      const next = document.getElementById('btnNext1');
+      if (q1 === 'pause') {
+        fb.className = 'feedback is-show feedback--ok';
+        fb.textContent = '✓ Верно. Иногда лучший тайм-менеджмент — просто быть здесь и сейчас.';
+        next.disabled = false;
+      } else {
+        fb.className = 'feedback is-show feedback--hint';
+        fb.textContent = 'Хм… сегодня есть дело поважнее.';
+        next.disabled = true;
+      }
+    }
+
+    function check2() {
+      const val = document.getElementById('answer2').value.trim().toLowerCase();
+      const fb = document.getElementById('fb2');
+      const next = document.getElementById('btnNext2');
+      if (val.includes('время') || val.includes('time')) {
+        fb.className = 'feedback is-show feedback--ok';
+        fb.textContent = '✓ Именно. Время нельзя вернуть — и сегодня тот самый день, когда стоит его потратить только на себя!';
+        next.disabled = false;
+      } else {
+        fb.className = 'feedback is-show feedback--hint';
+        fb.textContent = 'Близко… Обратись за подсказкой!:)';
+        next.disabled = true;
+      }
+    }
+
+    function pickQ3(el) {
+      document.querySelectorAll('[data-screen="3"] .quiz-card').forEach(c => c.classList.remove('is-selected'));
+      el.classList.add('is-selected');
+      const fb = document.getElementById('fb3');
+      fb.className = 'feedback is-show feedback--ok';
+      fb.textContent = 'Любое из этих мгновений — правильный выбор. Сегодня время — только твоё.';
+      document.getElementById('btn3').disabled = false;
+    }
+
+    document.getElementById('answer2').addEventListener('keydown', e => {
+      if (e.key === 'Enter') check2();
+    });
+
+  </script>
+  <script src="flowers.js"></script>
+  <script>
+    document.addEventListener('wheel', e => {
+      if (e.target.closest('.screen__inner, .memory-map, .memory-canvas')) return;
+      e.preventDefault();
+    }, { passive: false });
+    document.addEventListener('touchmove', e => {
+      if (e.target.closest('input, .screen__inner, .memory-map, .memory-canvas, .flower-slider')) return;
+      e.preventDefault();
+    }, { passive: false });
+  </script>
+</body>
+</html>
