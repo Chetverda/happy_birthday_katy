@@ -127,7 +127,7 @@
         </div>
         <div class="meta-row">
           <div class="meta-label">Сертификат</div>
-          <span class="btn" aria-disabled="true">Открыть подарок</span>
+          <button class="btn" type="button" onclick="openGiftModal()">Открыть подарок</button>
         </div>
         <p class="team-note">Поздравление от людей, которым очень повезло пересечься с тобой во времени.<br><strong style="opacity:1">Твой ДУЗ! С бесконечной любовью и самыми тёплыми пожеланиями! И с благодарностью, что ты даришь нам своё время ❤</strong></p>
         <div class="actions-row">
@@ -137,6 +137,15 @@
     </section>
 
   </main>
+
+  <div class="gift-modal" id="gift-modal" role="dialog" aria-modal="true" aria-labelledby="gift-modal-text" hidden>
+    <div class="gift-modal__card">
+      <p class="gift-modal__text" id="gift-modal-text">Сохрани себе эту ссылку, потому что в полночь она станет недоступна с сайта-поздравления</p>
+      <div class="gift-modal__actions">
+        <a class="btn" href="https://www.alltime.ru/certificates/cert/?ID=773701&CERT_NUM=M8uOGUqwVJ1DRDo4GgwqwIMq" target="_blank" rel="noopener" onclick="closeGiftModal()">Я поняла. Открыть подарок</a>
+      </div>
+    </div>
+  </div>
 
   <script src="memories.js"></script>
   <script>
@@ -313,6 +322,22 @@
         : '';
     }
 
+    function openGiftModal() {
+      const modal = document.getElementById('gift-modal');
+      modal.hidden = false;
+      modal.classList.add('is-open');
+    }
+
+    function closeGiftModal() {
+      const modal = document.getElementById('gift-modal');
+      modal.classList.remove('is-open');
+      modal.hidden = true;
+    }
+
+    document.getElementById('gift-modal').addEventListener('click', e => {
+      if (e.target.id === 'gift-modal') closeGiftModal();
+    });
+
     renderMemories();
     injectBackButtons();
 
@@ -321,7 +346,7 @@
       e.preventDefault();
     }, { passive: false });
     document.addEventListener('touchmove', e => {
-      if (e.target.closest('input, .screen__inner, .memory-map, .memory-canvas, .flower-slider, .petal, .petal-field')) return;
+      if (e.target.closest('input, .screen__inner, .memory-map, .memory-canvas, .flower-slider, .petal, .petal-field, .gift-modal')) return;
       e.preventDefault();
     }, { passive: false });
   </script>
