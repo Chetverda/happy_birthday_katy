@@ -119,17 +119,8 @@
     <section class="screen screen--sage" data-screen="6">
       <div class="screen__inner">
         <div class="text-xs screen-label">Твой подарок</div>
-        <h2 class="h4">Сертификат<br>в AllTime</h2>
-        <p class="letter-text">Самое ценное — не часы на запястье, а уважение к твоему времени. Право выбрать свой момент. Мы не дарим готовые часы — это слишком личный выбор. Мы дарим время выбрать тебе именно те часы, которые понравятся больше всего и будут каждый день радовать тебя.</p>
-        <p class="letter-text letter-extra">Ты дошла до конца — значит, пора и за букетом. Он ждёт тебя здесь, рядом.</p>
-        <div class="meta-row" style="margin-top:18px">
-          <div class="meta-label">Когда</div>
-          <div class="text-xl">Можно воспользоваться, когда будешь готова</div>
-        </div>
-        <div class="meta-row">
-          <div class="meta-label">Сертификат</div>
-          <button class="btn" type="button" onclick="openGiftModal()">Открыть подарок</button>
-        </div>
+        <h2 class="h4">Ты дошла<br>до конца</h2>
+        <p class="letter-text">Ты прошла весь путь — значит, пора и за букетом. Он ждёт тебя здесь, рядом.</p>
         <p class="team-note">Поздравление от людей, которым очень повезло пересечься с тобой во времени.<br><strong style="opacity:1">Твой ДУЗ! С бесконечной любовью и самыми тёплыми пожеланиями! И с благодарностью, что ты даришь нам своё время ❤</strong></p>
         <div class="actions-row">
           <a class="hero-tricks__cta" href="index.html">К началу</a>
@@ -138,15 +129,6 @@
     </section>
 
   </main>
-
-  <div class="gift-modal" id="gift-modal" role="dialog" aria-modal="true" aria-labelledby="gift-modal-text" hidden>
-    <div class="gift-modal__card">
-      <p class="gift-modal__text" id="gift-modal-text">Сохрани себе эту ссылку, потому что в полночь она станет недоступна с сайта-поздравления</p>
-      <div class="gift-modal__actions">
-        <a class="btn" href="https://www.alltime.ru/certificates/cert/?ID=773701&CERT_NUM=M8uOGUqwVJ1DRDo4GgwqwIMq" target="_blank" rel="noopener" onclick="closeGiftModal()">Я поняла. Открыть подарок</a>
-      </div>
-    </div>
-  </div>
 
   <script src="memories.js"></script>
   <script>
@@ -323,22 +305,6 @@
         : '';
     }
 
-    function openGiftModal() {
-      const modal = document.getElementById('gift-modal');
-      modal.hidden = false;
-      modal.classList.add('is-open');
-    }
-
-    function closeGiftModal() {
-      const modal = document.getElementById('gift-modal');
-      modal.classList.remove('is-open');
-      modal.hidden = true;
-    }
-
-    document.getElementById('gift-modal').addEventListener('click', e => {
-      if (e.target.id === 'gift-modal') closeGiftModal();
-    });
-
     renderMemories();
     injectBackButtons();
 
@@ -347,7 +313,7 @@
       e.preventDefault();
     }, { passive: false });
     document.addEventListener('touchmove', e => {
-      if (e.target.closest('input, .screen__inner, .memory-map, .memory-canvas, .flower-slider, .petal, .petal-field, .gift-modal')) return;
+      if (e.target.closest('input, .screen__inner, .memory-map, .memory-canvas, .flower-slider, .petal, .petal-field')) return;
       e.preventDefault();
     }, { passive: false });
   </script>
